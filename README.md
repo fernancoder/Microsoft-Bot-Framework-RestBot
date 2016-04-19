@@ -1,5 +1,5 @@
 # Microsoft Bot Framework RestBot
-bot for Microsoft Bot Framework accessible via http
+bot for Microsoft Bot Framework to node.js applicacions accessible via http
 
 Microsoft Bot Framework include bot connectors to text/sms, Office 365 mail, Skype, Slack, and other services.
 
