@@ -15,7 +15,7 @@ $ npm install --save botbuilder
 $ npm install --save restify
 ```
 - Copy RestBot.js from this repository to test_httpbot/node_modules/botbuilder/lib/bots
-- Include this lines in test_httpbot/node_modules/botbuilder/lib/botbulder.js as last require and exports blocks
+- Include this lines in test_httpbot/node_modules/botbuilder/lib/botbulder.js at end of require and exports blocks
 ```javasript
 var rest = require('./bots/RestBot');
 exports.RestBot = rest.RestBot;
@@ -28,6 +28,6 @@ This works but it is work in progress. This library is the result of a mix betwe
 $ node app.js 
 restify listening to http://[::]:8080
 ```
-
+Esceute a REST client simulator like [Chrome Advanced REST client](https://chrome.google.com/webstore/detail/advanced-rest-client/hgmloofddffdnphfgcellkdfbfbjeloo/)
 
 
