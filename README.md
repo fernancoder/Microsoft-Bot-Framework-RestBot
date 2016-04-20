@@ -20,8 +20,9 @@ $ npm install --save restify
 var rest = require('./bots/RestBot');
 exports.RestBot = rest.RestBot;
 ```
-## Testing
+## Work in progess
 This works but it is work in progress. This library is the result of a mix between TextBot.js and BotConnectorBot.js (AKA cust&paste). Both the code and the message formats must be simplified and optimized.
+## Testing
 - Copy app.js from this repository to test_httpbot
 - Execute node app.js from the command line:
 ```bash
