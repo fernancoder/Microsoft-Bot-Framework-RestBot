@@ -21,7 +21,7 @@ var rest = require('./bots/RestBot');
 exports.RestBot = rest.RestBot;
 ```
 ## Work in progess
-This works but it is work in progress. This library is the result of a mix between TextBot.js and BotConnectorBot.js (AKA cust&paste). Both the code and the message formats must be simplified and optimized.
+This works but it is work in progress. This connector is the result of a mix between TextBot.js and BotConnectorBot.js (AKA cust&paste). Both the code and the message formats must be simplified and optimized.
 ## Testing
 This example is based on basics-naturalLanguage example included in the Microsoft Bot Framework (https://github.com/Microsoft/BotBuilder) 
 - Copy app.js from this repository to test_httpbot
