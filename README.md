@@ -3,7 +3,7 @@ bot for Microsoft Bot Framework to node.js applications accessible via http
 ## About
 Microsoft Bot Framework (https://dev.botframework.com/) includes bot connectors to text/sms, Office 365 mail, Skype, Slack, and other services.
 
-This bot connector allows you to build node.js applications accessible via http
+This bot connector allows you to build node.js bot applications accessible via http
 
 ## Instalation
 - Create a new node.js application executing this from command line:
