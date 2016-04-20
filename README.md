@@ -1,5 +1,5 @@
 # Microsoft Bot Framework RestBot
-Bot library Microsoft Bot Framework compatilbe for node.js applicacions accessible via http
+Microsoft Bot Framework compatilbe bot library for node.js applicacions accessible via http
 ## About
 Microsoft Bot Framework (https://dev.botframework.com/) includes bot connectors to text/sms, Office 365 mail, Skype, Slack, and other services.
 
