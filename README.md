@@ -30,7 +30,7 @@ This example is based on basics-naturalLanguage example included in the Microsof
 $ node app.js 
 restify listening to http://[::]:8080
 ```
-- Esceute a REST client simulator like [Chrome Advanced REST client](https://chrome.google.com/webstore/detail/advanced-rest-client/hgmloofddffdnphfgcellkdfbfbjeloo/)
+- Execute a REST client simulator like [Chrome Advanced REST client](https://chrome.google.com/webstore/detail/advanced-rest-client/hgmloofddffdnphfgcellkdfbfbjeloo/)
 - Send post requests to http://localhost:8080/v1/chat copypasting messages included in message_1.json, message_2.json and message_3.json (order is important)
 
 
