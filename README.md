@@ -14,9 +14,20 @@ $ npm init
 $ npm install --save botbuilder
 $ npm install --save restify
 ```
-- Include RestBot.js under test_httpbot/node_modules/botbuilder/lib/bots
+- Copy RestBot.js from this repository to test_httpbot/node_modules/botbuilder/lib/bots
 - Include this lines in test_httpbot/node_modules/botbuilder/lib/botbulder.js as last require and exports blocks
 ```javasript
 var rest = require('./bots/RestBot');
 exports.RestBot = rest.RestBot;
 ```
+## Testing
+This works but it is work in progress. This library is the result of a mix between TextBot.js and BotConnectorBot.js (AKA cust&paste). Both the code and the message formats must be simplified and optimized.
+- Copy app.js from this repository to test_httpbot
+- Execute node app.js from the command line:
+```bash
+$ node app.js 
+restify listening to http://[::]:8080
+```
+
+
+
