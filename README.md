@@ -1,7 +1,7 @@
 # Microsoft Bot Framework RestBot
 bot for Microsoft Bot Framework to node.js applications accessible via http
 # About
-Microsoft Bot Framework (https://dev.botframework.com/) include bot connectors to text/sms, Office 365 mail, Skype, Slack, and other services.
+Microsoft Bot Framework (https://dev.botframework.com/) includes bot connectors to text/sms, Office 365 mail, Skype, Slack, and other services.
 
 This bot connector allows you to build node.js applications accessible via http
 
