@@ -1,0 +1,12 @@
+{
+  "type": "Message",
+  "language": "ES_ES",
+  "from": {
+    "id": "CLI001"
+  },
+  "botConversationData": 
+  { 
+    "BotBuilder.Data.SessionId": "cbbb8ac0-05f9-11e6-b48b-f14a6be43931" 
+  },
+  "text": "create alarm"
+}
