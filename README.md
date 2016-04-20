@@ -6,7 +6,7 @@ Microsoft Bot Framework (https://dev.botframework.com/) include bot connectors t
 This bot connector allows you to build node.js applications accessible via http
 
 ## Instalation
-- Execute from command line:
+- Create a new node.js application executing this from command line:
 ```bash
 $ mkdir test_httpbot
 $ cd test_httpbot
@@ -28,6 +28,7 @@ This works but it is work in progress. This library is the result of a mix betwe
 $ node app.js 
 restify listening to http://[::]:8080
 ```
-Esceute a REST client simulator like [Chrome Advanced REST client](https://chrome.google.com/webstore/detail/advanced-rest-client/hgmloofddffdnphfgcellkdfbfbjeloo/)
+- Esceute a REST client simulator like [Chrome Advanced REST client](https://chrome.google.com/webstore/detail/advanced-rest-client/hgmloofddffdnphfgcellkdfbfbjeloo/)
+- Send post requests to http://localhost:8080/v1/chat copypasting messages included in message_1.json, message_2.json and message_3.json (order is important)
 
 
