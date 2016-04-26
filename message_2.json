@@ -2,38 +2,10 @@
   "type": "Message",
   "language": "ES_ES",
   "from": {
-    "id": "CLI001"
+    "id": "fernancoder"
   },
-  "botConversationData": 
-  { 
-    "BotBuilder.Data.SessionId": "cbbb8ac0-05f9-11e6-b48b-f14a6be43931" 
+  "botConversationData": {
+    "BotBuilder.Data.SessionId": "b7f17cd0-0b98-11e6-9a57-d1f5a6dd6f44"
   },
-  "text": "despertador",
-  "botPerUserInConversationData": {
-    "BotBuilder.Data.SessionState": {
-      "callstack": [
-        {
-          "id": "/",
-          "state": {
-            "BotBuilder.Data.Group": "BotBuilder.Id.DefaultGroup",
-            "BotBuilder.Data.Intent": "builtin.intent.alarm.set_alarm",
-            "BotBuilder.Data.WaterfallStep": 0,
-            "alarm": {
-              "title": null,
-              "timestamp": null
-            }
-          }
-        },
-        {
-          "id": "BotBuilder.Dialogs.Prompts",
-          "state": {
-            "promptType": 0,
-            "prompt": "What would you like to call your alarm?",
-            "maxRetries": 1
-          }
-        }
-      ],
-      "lastAccess": 1461091245206
-    }
-  }    
+  "text": "2"
 }

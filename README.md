@@ -23,7 +23,7 @@ exports.RestBot = rest.RestBot;
 ## Work in progess
 This works but it is work in progress. This connector is the result of a mix between TextBot.js and BotConnectorBot.js (AKA cust&paste). Both the code and the message formats must be simplified and optimized.
 ## Testing
-This example is based on basics-naturalLanguage example included in the Microsoft Bot Framework (https://github.com/Microsoft/BotBuilder) 
+This example is about city information 
 - Copy app.js from this repository to test_httpbot
 - Execute node app.js from the command line:
 ```bash
@@ -31,6 +31,6 @@ $ node app.js
 restify listening to http://[::]:8080
 ```
 - Execute a REST client simulator like [Chrome Advanced REST client](https://chrome.google.com/webstore/detail/advanced-rest-client/hgmloofddffdnphfgcellkdfbfbjeloo/)
-- Send post requests to http://localhost:8080/v1/chat copypasting messages included in message_1.json, message_2.json and message_3.json (order is important)
+- Send post requests to http://localhost:8080/v1/chat copypasting messages included in message_1.json and message_2.json (order is important)
 
 

@@ -12,130 +12,39 @@ var builder = require('botbuilder');
 var restify = require('restify');
 
 // Create LUIS Dialog that points at our model and add it as the root '/' dialog for our Cortana Bot.
-var model = process.env.model || 'https://api.projectoxford.ai/luis/v1/application?id=c413b2ef-382c-45bd-8ff0-f76d60e2a821&subscription-key=6d0966209c6e4f6b835ce34492f3e6d9&q=';
+var model = process.env.model || 'https://api.projectoxford.ai/luis/v1/application?id=4017b531-5533-4611-afa5-5ab5fdbc6091&subscription-key=9122d4f6bb814bf3a37f013e472f23d4&q=';
 var dialog = new builder.LuisDialog(model);
-var restBot = new builder.RestBot();
-restBot.add('/', dialog);
-
-// Add intent handlers
-dialog.on('builtin.intent.alarm.set_alarm', [
-    function (session, args, next) {
-        // Resolve and store any entities passed from LUIS.
-        var title = builder.EntityRecognizer.findEntity(args.entities, 'builtin.alarm.title');
-        var time = builder.EntityRecognizer.resolveTime(args.entities);
-        var alarm = session.dialogData.alarm = {
-          title: title ? title.entity : null,
-          timestamp: time ? time.getTime() : null  
-        };
-        
-        if (time) {
-            var diff = time.getTime() - new Date().getTime();
-        }
-        
-        // Prompt for title
-        if (!alarm.title) {
-            builder.Prompts.text(session, 'What would you like to call your alarm?');
-        } else {
-            next();
-        }
-    },
-    function (session, results, next) {
-        var alarm = session.dialogData.alarm;
-        if (results.response) {
-            alarm.title = results.response;
-        }
-        
-        // Prompt for time (title will be blank if the user said cancel)
-        if (alarm.title && !alarm.timestamp) {
-            builder.Prompts.time(session, 'What time would you like to set the alarm for?');
-        } else {
-            next();
-        }
-    },
-    function (session, results) {
-        var alarm = session.dialogData.alarm;
-        if (results.response) {
-            var time = builder.EntityRecognizer.resolveTime([results.response]);
-            alarm.timestamp = time ? time.getTime() : null;
-        }
-        
-        // Set the alarm (if title or timestamp is blank the user said cancel)
-        if (alarm.title && alarm.timestamp) {
-            // Save address of who to notify and write to scheduler.
-            alarm.to = session.message.from;
-            alarm.from = session.message.to;
-            alarms[alarm.title] = alarm;
-            
-            // Send confirmation to user
-            var date = new Date(alarm.timestamp);
-            var isAM = date.getHours() < 12;
-            session.send('Creating alarm named "%s" for %d/%d/%d %d:%02d%s',
-                alarm.title,
-                date.getMonth() + 1, date.getDate(), date.getFullYear(),
-                isAM ? date.getHours() : date.getHours() - 12, date.getMinutes(), isAM ? 'am' : 'pm');
-        } else {
-            session.send('Ok... no problem.');
-        }
+var restBot = new builder.RestBot({appId: '514a8c70-13f5-12e9-be56-a63b0ae2859c'});
+restBot.add('/', function (session) {
+  if (session.userData.city) {
+    switch(session.message.text){
+      case "1":
+        session.send("%s tiene un clima espectacular.\n\n¿Que más quieres saber de %s?\n\n1-Su clima\n2-Sus paisajes\n3-Su gente", session.userData.city, session.userData.city);
+      break;
+      case "2":
+        session.send("El paisaje en %s te deja sin respiración.\n\n¿Que más quieres saber de %s?\n\n1-Su clima\n2-Sus paisajes\n3-Su gente", session.userData.city, session.userData.city);
+      break;
+      case "3":
+        session.send("Sea de día o de noche el ambiente de %s es insuperable.\n\n¿Que más quieres saber de %s?\n\n1-Su clima\n2-Sus paisajes\n3-Su gente", session.userData.city, session.userData.city);
+      break;
+      default:
+        session.send('%s es una ciudad preciosa. ¿Que quieres saber de %s?\n\n1-Su clima\n2-Sus paisajes\n3-Su gente', session.message.text, session.message.text);
+        session.userData.city = session.message.text;
+      break;
     }
-]);
-
-dialog.on('builtin.intent.alarm.delete_alarm', [
-    function (session, args, next) {
-        // Resolve entities passed from LUIS.
-        var title;
-        var entity = builder.EntityRecognizer.findEntity(args.entities, 'builtin.alarm.title');
-        if (entity) {
-            // Verify its in our set of alarms.
-            title = builder.EntityRecognizer.findBestMatch(alarms, entity.entity);
-        }
-        
-        // Prompt for alarm name
-        if (!title) {
-            builder.Prompts.choice(session, 'Which alarm would you like to delete?', alarms);
-        } else {
-            next({ response: title });
-        }
-    },
-    function (session, results) {
-        // If response is null the user canceled the task
-        if (results.response) {
-            delete alarms[results.response.entity];
-            session.send("Deleted the '%s' alarm.", results.response.entity);
-        } else {
-            session.send('Ok... no problem.');
-        }
-    }
-]);
-
-dialog.onDefault(builder.DialogAction.send("I'm sorry I didn't understand. I can only create & delete alarms."));
-
+  }
+  else
+  {
+    session.send('%s es una ciudad preciosa. ¿Que quieres saber de %s?\n\n1-Su clima\n2-Sus paisajes\n3-Su gente', session.message.text, session.message.text);
+    session.userData.city = session.message.text;
+  }
+});
 
 // Setup Restify Server
 const server = restify.createServer();
-server.post('/v1/chat', restBot.listen());
-server.listen(process.env.PORT || 8080, function () {
+server.post('/api/messages', restBot.listen());
+server.listen(process.env.PORT || 3978, function () {
    console.log('%s listening to %s', server.name, server.url); 
 });
 
-/*
-// Add notification dialog
-cortanaBot.add('/notify', function (session, alarm) {
-   session.send("Here's your '%s' alarm.", alarm.title);
-   session.endDialog(); // <= we don't want replies coming to us 
-});
 
-cortanaBot.listenStdin();
-
-// Very simple demo scheduler
-var alarms = {};
-setInterval(function () {
-    var now = new Date().getTime();
-    for (var key in alarms) {
-        var alarm = alarms[key];
-        if (now >= alarm.timestamp) {
-            cortanaBot.beginDialog({ from: alarm.from, to: alarm.to }, '/notify', alarm);
-            delete alarms[key];
-        }
-    }
-}, 15000);
-*/
